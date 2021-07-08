@@ -1,60 +1,93 @@
-<html><body><div style='text-algin: center; font-weight: bold;'>Wireless Freedom  -  Build Your Own Wifi Network</div>
+<html><body>
+<div style='height: 20px;'></div>
+<div style='text-align: center; font-weight: bold;'>Wireless Freedom  -  Build Your Own Wifi Network</div>
 <div style='height: 40px;'></div>
 <div>
-     If you own a dual-band router that is compatible with OpenWrt and you have a friend or two who live nearby with similar routers, you can form a small wifi network and communicate without any internet connection.  Anything that can run on the internet can also run on your small private network as long as you have the source code to install it.  There is an abundance of opensource software that you can download to create servers, social "Facebook" type apps, games or even a cryptocurrency ecosystem. Some of these may require a PC with a hefty amount of ram and storage space, but others can fit easily on development boards such as the raspberry pi. If you have no friends, or your friends just don't care about this kind of stuff, you can do as I did and get three routers yourself, install OpenWrt and set them up as they should be for three separate houses and "pretend."
-     Why would anyone want a small wifi network that is not connected to the internet?  Actually, once your network is set up and running, you could connect one of the routers to the internet to share that connection with the others.  However, this article is written mainly for people who want to figure out how to build small local networks for various reasons.  Maybe you  just want to talk without any possibility of your conversations being recorded on remote servers.  Maybe you want to start a network that can eventually grow to cover your city or small town and specializes in information that is mainly of local interest.  This could be Craigslist type ads for selling and buying local things, announcements of community meetings, reviews of local businesses, dating apps for people who actually want to meet in person, discussions of topics that are heavily censored on the regular internet; there are endless possibilities.  A very local network would attract  ad revenue from "brick and mortar" local businesses.  There also is the possibility that when these small local networks start to proliferate they will connect to each other, forming essentially an Alternet which would be in competition with the existing internet, and competition is good for the consumer.
+<p> If you own a dual-band router that is compatible with OpenWrt and you have a friend or two who live nearby with similar routers, you can form a small wifi network and communicate 
+	without any internet connection.  Anything that can run on the internet can also run on your small private network as long as you have the source code to install it.  
+	There is an abundance of opensource software that you can download to create servers, social "Facebook" type apps, games or even a cryptocurrency ecosystem. 
+	Some of these may require a PC with a hefty amount of ram and storage space, but others can fit easily on development boards such as the raspberry pi. 
+	If you have no friends, or your friends just don't care about this kind of stuff, you can do as I did and get three routers yourself, install OpenWrt and set them 
+	up as they should be for three separate houses and "pretend." </p>
+<p> Why would anyone want a small wifi network that is not connected to the internet?  Actually, once your network is set up and running, you could connect one of the routers 
+	to the internet to share that connection with the others.  However, this article is written mainly for people who want to figure out how to build small local networks 
+	for various reasons.  Maybe you  just want to talk without any possibility of your conversations being recorded on remote servers.  Maybe you want to start a network 
+	that can eventually grow to cover your city or small town and specializes in information that is mainly of local interest.  This could be Craigslist type ads for selling
+	and buying local things, announcements of community meetings, reviews of local businesses, dating apps for people who actually want to meet in person, 
+	discussions of topics that are heavily censored on the regular internet; there are endless possibilities.  A very local network would attract  ad revenue from 
+	"brick and mortar" local businesses.  There also is the possibility that when these small local networks start to proliferate they will connect to each other, 
+	forming essentially an Alternet which would be in competition with the existing internet, and competition is good for the consumer. </p>
 
-    In this article I describe the steps for getting three routers to communicate in a linear configuration.  In a separate article I will continue with instructions for installing and using a BBS from the Skycoin cryptocurrency project to test out communications using a web interface.  Please keep in mind that if you plan to build a network that covers a small town or city, or even a sizable neighborhood, you would need to set up gateway routers in appropriate places in the network to keep routing tables and forward them to all the small home routers.  You also would need access to fiber cables in parts of the network or powerful radios and antennas that may need an FCC license.  I only cover in this article the configuration that I have tested.  I hope that others who begin with this simple experiment may be motivated to set up larger networks. There is opensource software available like Quagga, BIRD, ExaBGP etc. for running the gateway routers required by larger networks.
+<p>    In this article I describe the steps for getting three routers to communicate in a linear configuration.  In a separate article I will continue with instructions for 
+	installing and using a BBS from the Skycoin cryptocurrency project to test out communications using a web interface.  Please keep in mind that if you plan to build 
+	a network that covers a small town or city, or even a sizable neighborhood, you would need to set up gateway routers in appropriate places in the network to keep 
+	routing tables and forward them to all the small home routers.  You also would need access to fiber cables in parts of the network or powerful radios and antennas 
+	that may need an FCC license.  I only cover in this article the configuration that I have tested.  I hope that others who begin with this simple experiment may be 
+	motivated to set up larger networks. There is opensource software available like Quagga, BIRD, ExaBGP etc. for running the gateway routers required by larger networks. </p>
+<div style='height: 20px;'></div>
+<span style='font-weight: bold;'>Equipment needed:</span>
+<div style='height: 15px;'></div>
+Three dual band (2.4 and 5 ghz) wifi routers which are compatible with OpenWrt. <br>
+A laptop or computer that is wifi enabled to connect to the wifi hotspots that will be created. <br>
+Optional: Three usb thumb drives (minimum of 16 Gb recommended), one for each router.<br><br>
 
-Equipment needed:
+If you need to buy a router, I recommend the Linksys WRT AC1200,  Linksys WRT AC1900 or  Linksys WRT AC3200. <br><br>
 
-Three dual band (2.4 and 5 ghz) wifi routers which are compatible with OpenWrt. 
-A laptop or computer that is wifi enabled to connect to the wifi hotspots that will be created.
-Optional: Three usb thumb drives (minimum of 16 Gb recommended), one for each router.
+If you have a router, and want to check if it is compatible with OpenWrt go to the OpenWrt table of hardware:<br><br>
 
-If you need to buy a router, I recommend the Linksys WRT AC1200,  Linksys WRT AC1900 or  Linksys WRT AC3200. 
+https://openwrt.org/toh/start<br><br>
 
-If you have a router, and want to check if it is compatible with OpenWrt go to the OpenWrt table of hardware:
+<p>Type the brand (Linksys, TP-Link, Netgear, Ubiquiti, etc ..) in the first column and hit "enter" and see if your exact model is available in the page that comes up.  
+Remember that for this experiment your router also needs to be dual band (2.4 and 5 ghz) If your model is there, click on the "device page" then scroll down to 
+"Installation."  Under the "Firmware OpenWrt Install" column you will find the firmware that you need to download to your laptop or PC and will later upload to your router. </p> 
+<br><br>
+<p><span style='font-weight: bold;'>CAUTION:</span>  Please note that once you install the OpenWrt firmware, this action voids the warranty on your router, and is also risky 
+(can brick your router if something goes wrong).  I suggest not using the same router you regularly use for your internet, although you can.  This experiment may take awhile, 
+	and the router will need to be disconnected from the internet during part of the time. </p> 
+<br><br><br>
 
-https://openwrt.org/toh/start
-
-Type the brand (Linksys, TP-Link, Netgear, Ubiquiti, etc ..) in the first column and hit "enter" and see if your exact model is available in the page that comes up.  Remember that for this experiment your router also needs to be dual band (2.4 and 5 ghz) If your model is there, click on the "device page" then scroll down to "Installation."  Under the "Firmware OpenWrt Install" column you will find the firmware that you need to download to your laptop or PC and will later upload to your router.  
-
-CAUTION:  Please note that once you install the OpenWrt firmware, this action voids the warranty on your router, and is also risky (can brick your router if something goes wrong).  I suggest not using the same router you regularly use for your internet, although you can.  This experiment may take awhile, and the router will need to be disconnected from the internet during part of the time.  
-
-
-Step 1  		        Replace your router's factory firmware with the OpenWrt firmware
-
-     Follow the directions in this article:
-
-https://www.vegard.net/openwrt-linksys-wrt1900acs-installation
-
-Notes:  The above link is written specifically for the Linksys WRT AC1900, but the directions are similar for other models.
-You should connect to your router directly from your PC or laptop with ethernet cable to be safe during the upgrade process. In order to access the router you need to set your PC with a static IP that is in the same subnet as the router.  The above article just says "consult The Internet," but I found this article to be pretty clear and well-written:
-
-https://www.howtogeek.com/howto/19249/how-to-assign-a-static-ip-address-in-xp-vista-or-windows-7
+<div><span style='font-weight: bold;'>Step 1</span><div style='text-align: center;'>Replace your router's factory firmware with the OpenWrt firmware</div></div>
+<br><br>
+	<p>Follow the directions in this article:</p>
+<br><br>
+<a href='https://www.vegard.net/openwrt-linksys-wrt1900acs-installation'>vegard.net/openwrt-linksys-wrt1900acs-installation</a>
+<br><br>
+<p>Notes:  The above link is written specifically for the Linksys WRT AC1900, but the directions are similar for other models.
+You should connect to your router directly from your PC or laptop with ethernet cable to be safe during the upgrade process. In order to access the router you need to set your 
+PC with a static IP that is in the same subnet as the router.  The above article just says "consult The Internet," but I found this article to be pretty clear and well-written:</p>
+<br><br>
+<a href='https://www.howtogeek.com/howto/19249/how-to-assign-a-static-ip-address-in-xp-vista-or-windows-7'>Assign a Static IP Address</a>
+<br><br><br>
 
 
- Step 2  			 	      Initial Setup
+ <div><span style='font-weight: bold;'>Step 2</span><div style='text-align: center;'>Initial Setup</div></div>
+<br><br>
+<p> After rebooting your router as mentioned in the article above (for some routers you may have to actually power cycle) you should be able to log into 192.168.1.1 and see 
+that the OpenWrt firmware is installed.  You will be asked to set a password.  Go ahead and do that, write it down in a safe place, and attach a label somewhere on the 
+	outside of your router with the ip: "192.168.1.1"</p>
+<br><br>
+ <p> From the top menu, go to System --> Administration.  You will see SSH Access, Dropbear instance.  Nothing should need to be changed here, but check that the default is 
+	 Interface: unspecified, Port: 22.  "Password authentication" and "Allow root logins .." should be checked.</p>
+<br><br>
+ <p>If you don't have one, you will need to download to your laptop or PC an SSH client to access the command line in OpenWrt.  For windows, I recommend 
+	 <a href='https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html'>Putty</a>.
+<br><br>
+<p>Open your SSH client, use 192.168.1.1 for the Host Name and 22 for the Port.  Connection type should be "SSH."  Click the "Open" button at the bottom.  Login as “root” 
+	and use the password you just set and hit "enter."  You should see the "OpenWrt - Wireless Freedom" banner.</p><br>
+<br><br>
+<div><span style='font-weight: bold;'>Step 3</span><div style='text-align: center;'>Optional but highly recommended:  Copy the OpenWrt operating system to a USB drive.</div></div>
+<br><br>
+<p>You are much more likely to brick your router if you perform this experiment directly within the firmware you just flashed to the router.  Instead you can make a copy of 
+OpenWrt on a USB stick from which the router will boot and you make all changes and configurations there.  If something goes wrong to the point that you can not access the 
+router (with the USB plugged in) you just boot up without the USB and you are back at the starting point where you freshly installed OpenWrt.  You loose the work done so far, 
+	but you don't ruin your router and you can start again with a blank USB.</p>
+<br><br>
+<p>NOTE: If you are using putty, you can copy any line of text from within windows and paste it after the command prompt in Putty by right clicking.</p>
+<br><br>
+<div><span style='font-weight: bold;'>  A.</span><div style='text-align: center;'>Format your USB drive in ext4 filesystem.</div></div>  
+<br><br>
+<p>If you are using a Linux PC, gparted is a good tool for doing this. For windows, try <a href='https://www.partitionwizard.com/download.html'>MiniTool Partition Wizard</a>         
 
-     After rebooting your router as mentioned in the article above (for some routers you may have to actually power cycle) you should be able to log into 192.168.1.1 and see that the OpenWrt firmware is installed.  You will be asked to set a password.  Go ahead and do that, write it down in a safe place, and attach a label somewhere on the outside of your router with the ip: "192.168.1.1"
-	
-     From the top menu, go to System --> Administration.  You will see SSH Access, Dropbear instance.  Nothing should need to be changed here, but check that the default is Interface: unspecified, Port: 22.  "Password authentication" and "Allow root logins .." should be checked.
-
-     If you don't have one, you will need to download to your laptop or PC an SSH client to access the command line in OpenWrt.  For windows, I recommend Putty:  https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
-
-Open your SSH client, use 192.168.1.1 for the Host Name and 22 for the Port.  Connection type should be "SSH."  Click the "Open" button at the bottom.  Login as “root” and use the password you just set and hit "enter."  You should see the "OpenWrt - Wireless Freedom" banner.
-
- Step 3       Optional but highly recommended:  Copy the OpenWrt operating system to a USB drive.
-
-     You are much more likely to brick your router if you perform this experiment directly within the firmware you just flashed to the router.  Instead you can make a copy of OpenWrt on a USB stick from which the router will boot and you make all changes and configurations there.  If something goes wrong to the point that you can not access the router (with the USB plugged in) you just boot up without the USB and you are back at the starting point where you freshly installed OpenWrt.  You loose the work done so far, but you don't ruin your router and you can start again with a blank USB.
-
-NOTE: If you are using putty, you can copy any line of text from within windows and paste it after the command prompt in Putty by right clicking.
-
-   A.                                                          Format your USB drive in ext4 filesystem.  
-
-        If you are using a Linux PC, gparted is a good tool for doing this. For windows, try MiniTool Partition Wizard:          
-   https://www.partitionwizard.com/download.html     
         The free version will be fine for this experiment.  Plug the USB drive into your PC, and open the partition wizard.  You        
    should see at least two disks (possibly more if your PC has more than one disk).  CAUTION:  It is very important to  
    select  your USB disk to format.  If you select the wrong disk, you could completely wipe out everything on your PC!  In    
@@ -64,5 +97,6 @@ NOTE: If you are using putty, you can copy any line of text from within windows 
    file format the USB had before to "Unallocated".  You have not actually made any change, however, until you click the  
    "Apply" checkmark in the upper left-hand corner.  This is a precaution.  Each step you take will ask you to confirm with   
    "Apply".  After the "Apply" you will confirm with "yes" and the partition on the USB will be actually deleted.
+</p>
    </div></body></html>
    
