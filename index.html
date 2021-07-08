@@ -40,52 +40,48 @@ https://openwrt.org/toh/start<br><br>
 <p>Type the brand (Linksys, TP-Link, Netgear, Ubiquiti, etc ..) in the first column and hit "enter" and see if your exact model is available in the page that comes up.  
 Remember that for this experiment your router also needs to be dual band (2.4 and 5 ghz) If your model is there, click on the "device page" then scroll down to 
 "Installation."  Under the "Firmware OpenWrt Install" column you will find the firmware that you need to download to your laptop or PC and will later upload to your router. </p> 
-<br><br>
+
 <p><span style='font-weight: bold;'>CAUTION:</span>  Please note that once you install the OpenWrt firmware, this action voids the warranty on your router, and is also risky 
 (can brick your router if something goes wrong).  I suggest not using the same router you regularly use for your internet, although you can.  This experiment may take awhile, 
 	and the router will need to be disconnected from the internet during part of the time. </p> 
-<br><br><br>
-
+<br>
 <div><span style='font-weight: bold;'>Step 1</span><div style='text-align: center;'>Replace your router's factory firmware with the OpenWrt firmware</div></div>
-<br><br>
+
 	<p>Follow the directions in this article:</p>
-<br><br>
-<a href='https://www.vegard.net/openwrt-linksys-wrt1900acs-installation'>vegard.net/openwrt-linksys-wrt1900acs-installation</a>
-<br><br>
+<p><a href='https://www.vegard.net/openwrt-linksys-wrt1900acs-installation'>vegard.net/openwrt-linksys-wrt1900acs-installation</a></p>
+
 <p>Notes:  The above link is written specifically for the Linksys WRT AC1900, but the directions are similar for other models.
 You should connect to your router directly from your PC or laptop with ethernet cable to be safe during the upgrade process. In order to access the router you need to set your 
 PC with a static IP that is in the same subnet as the router.  The above article just says "consult The Internet," but I found this article to be pretty clear and well-written:</p>
-<br><br>
-<a href='https://www.howtogeek.com/howto/19249/how-to-assign-a-static-ip-address-in-xp-vista-or-windows-7'>Assign a Static IP Address</a>
-<br><br><br>
 
-
+<p><a href='https://www.howtogeek.com/howto/19249/how-to-assign-a-static-ip-address-in-xp-vista-or-windows-7'>Assign a Static IP Address</a></p>
+<br>
  <div><span style='font-weight: bold;'>Step 2</span><div style='text-align: center;'>Initial Setup</div></div>
-<br><br>
+<br>
 <p> After rebooting your router as mentioned in the article above (for some routers you may have to actually power cycle) you should be able to log into 192.168.1.1 and see 
 that the OpenWrt firmware is installed.  You will be asked to set a password.  Go ahead and do that, write it down in a safe place, and attach a label somewhere on the 
 	outside of your router with the ip: "192.168.1.1"</p>
-<br><br>
+
  <p> From the top menu, go to System --> Administration.  You will see SSH Access, Dropbear instance.  Nothing should need to be changed here, but check that the default is 
 	 Interface: unspecified, Port: 22.  "Password authentication" and "Allow root logins .." should be checked.</p>
-<br><br>
+
  <p>If you don't have one, you will need to download to your laptop or PC an SSH client to access the command line in OpenWrt.  For windows, I recommend 
-	 <a href='https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html'>Putty</a>.
-<br><br>
+	 <a href='https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html'>Putty</a>. </p>
+
 <p>Open your SSH client, use 192.168.1.1 for the Host Name and 22 for the Port.  Connection type should be "SSH."  Click the "Open" button at the bottom.  Login as “root” 
-	and use the password you just set and hit "enter."  You should see the "OpenWrt - Wireless Freedom" banner.</p><br>
-<br><br>
+	and use the password you just set and hit "enter."  You should see the "OpenWrt - Wireless Freedom" banner.</p>
+<br>
 <div><span style='font-weight: bold;'>Step 3</span><div style='text-align: center;'>Optional but highly recommended:  Copy the OpenWrt operating system to a USB drive.</div></div>
-<br><br>
+<br>
 <p>You are much more likely to brick your router if you perform this experiment directly within the firmware you just flashed to the router.  Instead you can make a copy of 
 OpenWrt on a USB stick from which the router will boot and you make all changes and configurations there.  If something goes wrong to the point that you can not access the 
 router (with the USB plugged in) you just boot up without the USB and you are back at the starting point where you freshly installed OpenWrt.  You loose the work done so far, 
 	but you don't ruin your router and you can start again with a blank USB.</p>
-<br><br>
+
 <p>NOTE: If you are using putty, you can copy any line of text from within windows and paste it after the command prompt in Putty by right clicking.</p>
-<br><br>
+<<br>
 <div><span style='font-weight: bold;'>  A.</span><div style='text-align: center;'>Format your USB drive in ext4 filesystem.</div></div>  
-<br><br>
+<br>
 <p>If you are using a Linux PC, gparted is a good tool for doing this. For windows, try <a href='https://www.partitionwizard.com/download.html'>MiniTool Partition Wizard</a>         
 
         The free version will be fine for this experiment.  Plug the USB drive into your PC, and open the partition wizard.  You        
