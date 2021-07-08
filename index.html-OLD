@@ -169,7 +169,7 @@ without internet.
 	cd ~
 	mount /dev/sdX1 /mnt
 
-	Now, you will copy the router’s internal flash to the USB drive.  Type (or paste) the following commands carefully (enter after each): 
+	Now, you will copy the routerÂ’s internal flash to the USB drive.  Type (or paste) the following commands carefully (enter after each): 
 
  	mkdir -p /tmp/cproot
 	mount --bind / /tmp/cproot
@@ -177,7 +177,7 @@ without internet.
 	umount /tmp/cproot
 	umount /mnt
 
-	Your USB drive now has a copy of the router’s root filesystem on it. However, the router will still boot 
+	Your USB drive now has a copy of the routerÂ’s root filesystem on it. However, the router will still boot 
 	from its internal memory, so we need to change that by editing the /etc/config/fstab file. Type the following lines (hit enter after
 	each and don't forget to replace "sdX1" with the actual name of your USB drive:
 
